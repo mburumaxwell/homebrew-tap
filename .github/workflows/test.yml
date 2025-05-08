@@ -1,0 +1,52 @@
+name: Test Homebrew Formulae
+
+on:
+  # pull_request:
+  #   branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  Test:
+    strategy:
+      matrix:
+        formula: [azddns]
+        # https://github.blog/changelog/2025-01-16-linux-arm64-hosted-runners-now-available-for-free-in-public-repositories-public-preview/
+        # macos-latest and macos-14 onwards are arm64 by default, x64 is only on macos-latest-large but not free
+        os: [macos-latest, macos-latest-large, ubuntu-latest, ubuntu-24.04-arm]
+        exclude:
+          - { os: macos-latest-large }
+
+    runs-on: ${{ matrix.os }}
+    env:
+      TARGET_FILE: Formula/${{ matrix.formula }}.rb
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Homebrew (Linux only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y build-essential curl file git && \
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" && \
+          echo /home/linuxbrew/.linuxbrew/bin >> $GITHUB_PATH
+
+      - name: Install from rb file
+        run: brew install --formula ${{ env.TARGET_FILE }}
+
+      - name: Run brew tests
+        run: brew test ${{ env.TARGET_FILE }}
+        env:
+          HOMEBREW_NO_ENV_HINTS: 1
+
+      - name: Run tool tests
+        run: ${{ matrix.formula }} --version && ${{ matrix.formula }} --help
