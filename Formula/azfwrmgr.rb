@@ -1,7 +1,7 @@
 # typed: false
 # frozen_string_literal: true
 
-class AzureFwrMgr < Formula
+class Azfwrmgr < Formula
   desc "Azure Firewall Rules Manager."
   homepage "https://github.com/mburumaxwell/azfwrmgr"
   license "MIT"
