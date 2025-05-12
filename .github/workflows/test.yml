@@ -17,7 +17,7 @@ jobs:
   Test:
     strategy:
       matrix:
-        formula: [azddns]
+        formula: [azddns, azfwrmgr]
         # https://github.blog/changelog/2025-01-16-linux-arm64-hosted-runners-now-available-for-free-in-public-repositories-public-preview/
         # macos-latest and macos-14 onwards are arm64 by default, x64 is only on macos-latest-large but not free
         os: [macos-latest, macos-latest-large, ubuntu-latest, ubuntu-24.04-arm]
