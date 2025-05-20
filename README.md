@@ -21,6 +21,7 @@ brew install mburumaxwell/tap/<FORMULA>
 |--|--|--|
 |[azddns](https://github.com/mburumaxwell/azddns)|[formula](Formula/azddns.rb)|Dynamic DNS (DDNS) tool for Azure DNS.|
 |[azfwrmgr](https://github.com/mburumaxwell/azfwrmgr)|[formula](Formula/azfwrmgr.rb)|Azure Firewall Rules Manager.|
+|[azsqlidxmgr](https://github.com/mburumaxwell/azsqlidxmgr)|[formula](Formula/azsqlidxmgr.rb)|Azure SQL Index Manager.|
 
 ## Documentation
 
