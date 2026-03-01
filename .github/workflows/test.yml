@@ -47,6 +47,15 @@ jobs:
       - name: Install formula from tap
         run: brew install --formula ${{ env.TAP_NAME }}/${{ env.TARGET_FORMULA }}
 
+      - name: Fix Homebrew bundle permissions (Linux only)
+        if: runner.os == 'Linux'
+        run: |
+          BREW_PREFIX="$(brew --prefix)"
+          BUNDLE_DIR="$BREW_PREFIX/Homebrew/Library/Homebrew/vendor/bundle"
+          if [ -d "$BUNDLE_DIR" ]; then
+            find "$BUNDLE_DIR" -type d -exec chmod go-w {} +
+          fi
+
       - name: Run brew tests
         run: brew test ${{ env.TAP_NAME }}/${{ env.TARGET_FORMULA }}
         env:
