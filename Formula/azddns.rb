@@ -5,29 +5,29 @@ class Azddns < Formula
   desc "Dynamic DNS (DDNS) tool for Azure DNS."
   homepage "https://github.com/mburumaxwell/azddns"
   license "MIT"
-  version "0.3.1"
+  version "0.4.0"
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/mburumaxwell/azddns/releases/download/0.3.1/azddns-0.3.1-linux-arm64.tar.gz"
-      sha256 "4883ae98dfdc5928c297662ca7c5cd055e040337d3e420f003d4cb46efd6aefc"
+      url "https://github.com/mburumaxwell/azddns/releases/download/0.4.0/azddns-0.4.0-linux-arm64.tar.gz"
+      sha256 "6eb3fd668f58ba81430b901ad5d7167791aad8fc72e41acb38a5331afd3e0738"
     end
 
     if Hardware::CPU.intel?
-      url "https://github.com/mburumaxwell/azddns/releases/download/0.3.1/azddns-0.3.1-linux-x64.tar.gz"
-      sha256 "e21a2ac25ebb907585126172e952816b7c3c99535b141ed169490aa9268ba4ca"
+      url "https://github.com/mburumaxwell/azddns/releases/download/0.4.0/azddns-0.4.0-linux-x64.tar.gz"
+      sha256 "14b9cfea92cf8c00af624608d80855ab1514101d19dcd81dc48873abda5a2bc0"
     end
   end
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/mburumaxwell/azddns/releases/download/0.3.1/azddns-0.3.1-osx-arm64.tar.gz"
-      sha256 "f0c12dc5f209558fb914eaa4796234bf720d8b550a99dc9a810c1829ede6614a"
+      url "https://github.com/mburumaxwell/azddns/releases/download/0.4.0/azddns-0.4.0-osx-arm64.tar.gz"
+      sha256 "9d6703995e9c13826c31d8c3f2d94c4e8354dccd2f5d945e6cbb534e1b4d92b7"
     end
 
     if Hardware::CPU.intel?
-      url "https://github.com/mburumaxwell/azddns/releases/download/0.3.1/azddns-0.3.1-osx-x64.tar.gz"
-      sha256 "e4f38c9d713e589dec9702593b2337d2a41a762e4514fd82af94be9006638943"
+      url "https://github.com/mburumaxwell/azddns/releases/download/0.4.0/azddns-0.4.0-osx-x64.tar.gz"
+      sha256 "fef9565127b79e7da3ef32aafc64f343c08fe232a53e98e4583e9f2af28e5ad3"
     end
   end
 
