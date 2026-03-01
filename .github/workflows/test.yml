@@ -26,7 +26,8 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     env:
-      TARGET_FILE: Formula/${{ matrix.formula }}.rb
+      TAP_NAME: ${{ github.repository_owner }}/tap
+      TARGET_FORMULA: ${{ matrix.formula }}
 
     steps:
       - name: Checkout
@@ -40,11 +41,14 @@ jobs:
           sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" && \
           echo /home/linuxbrew/.linuxbrew/bin >> $GITHUB_PATH
 
-      - name: Install from rb file
-        run: brew install --formula ${{ env.TARGET_FILE }}
+      - name: Tap local repository
+        run: brew tap ${{ env.TAP_NAME }} ${{ github.workspace }}
+
+      - name: Install formula from tap
+        run: brew install --formula ${{ env.TAP_NAME }}/${{ env.TARGET_FORMULA }}
 
       - name: Run brew tests
-        run: brew test ${{ env.TARGET_FILE }}
+        run: brew test ${{ env.TAP_NAME }}/${{ env.TARGET_FORMULA }}
         env:
           HOMEBREW_NO_ENV_HINTS: 1
 
